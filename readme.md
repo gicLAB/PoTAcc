@@ -16,7 +16,7 @@ three well-known DNN models.
 @inproceedings{SAHA2024ICECS,
       title={{Accelerating PoT Quantization on Edge Devices}}, 
       author={Rappy Saha and Jude Haris and José Cano},
-      booktitle = {ICECS},
+      booktitle = {2024 31st IEEE International Conference on Electronics, Circuits and Systems (ICECS)},
       year={2024}
       comment = {Accepted for publication}
 }
