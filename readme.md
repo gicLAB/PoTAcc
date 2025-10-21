@@ -90,7 +90,7 @@ This model will be used to verify the correctness of the shift-based accelerator
             "request": "launch",
             "program": "${workspaceFolder}/bazel-bin/tensorflow/lite/delegates/utils/secda_delegates/vm_shift_delegate/v4/inference_diff_plus_vm_shift_delegate",
             "args": [
-                "--model_file=${workspaceFolder}/../src/benchmark_suite/model_gen/models/conv_icecs/mnk_128_64_256.tflite",
+                "--model_file=${workspaceFolder}/../src/benchmark_suite/model_gen/models/synthetic_exp/mnk_128_64_256.tflite",
                 "--num_runs=1",
                 "--use_vm_shift_delegate=true",
             ],
