@@ -27,10 +27,10 @@ SC_MODULE(VMM_UNIT) {
   sc_fifo_in<bUF> inp_fifo;
   sc_fifo_in<int> post_fifo;
 
-  sc_fifo_out<DATA> dout1;
-  sc_fifo_out<DATA> dout2;
-  sc_fifo_out<DATA> dout3;
-  sc_fifo_out<DATA> dout4;
+  sc_fifo_out<ADATA> dout1;
+  sc_fifo_out<ADATA> dout2;
+  sc_fifo_out<ADATA> dout3;
+  sc_fifo_out<ADATA> dout4;
 
   // Signals
 #ifndef __SYNTHESIS__
@@ -236,8 +236,8 @@ struct var_array4 {
     else vars_0.wgt_fifo.write(data);
   }
 
-  DATA dout_read(int index, int dout_index) {
-    DATA d = {0, 0};
+  ADATA dout_read(int index, int dout_index) {
+    ADATA d = {0, 0};
     if (index == 0 && dout_index == 0) return vars_0.dout1.read();
     else if (index == 0 && dout_index == 1) return vars_0.dout2.read();
     else if (index == 0 && dout_index == 2) return vars_0.dout3.read();

@@ -1,8 +1,9 @@
 #include <string>
 #include <utility>
 
-#include "tensorflow/lite/tools/delegates/delegate_provider.h"
 #include "vm_shift_delegate.h"
+#include "tensorflow/lite/tools/delegates/delegate_provider.h"
+
 
 namespace tflite {
 namespace tools {

@@ -1,18 +1,18 @@
 // #define SYSC
 
-#include "vm_shift_delegate.h"
-#include "tensorflow/lite/delegates/utils/secda_tflite/secda_profiler/profiler.h"
 #include <utility>
 
 #ifdef SYSC
-#include "tensorflow/lite/delegates/utils/secda_tflite/secda_integrator/systemc_integrate.h"
+#include "secda_tools/secda_integrator/systemc_integrate.h"
 #endif
+#include "secda_tools/secda_profiler/profiler.h"
+
 
 #include "accelerator/driver/gemm_driver.h"
-#include "tensorflow/lite/delegates/utils/secda_tflite/threading_utils/acc_helpers.h"
-#include "tensorflow/lite/delegates/utils/secda_tflite/threading_utils/utils.h"
-#include "tensorflow/lite/delegates/utils/simple_delegate.h"
 #include "util.h"
+#include "vm_shift_delegate.h"
+#include "tensorflow/lite/delegates/utils/simple_delegate.h"
+
 
 #define DMA_BC 1
 #define DELEGATE_VERSION 2
@@ -24,7 +24,7 @@ static struct vm_times vm_t;
 
 #ifdef SYSC
 #define SYSC_DMA_BL 563840 * 2
-static struct multi_dma mdma(4, dma_addrs, dma_addrs_in, dma_addrs_out,
+static struct s_mdma mdma(4, dma_addrs, dma_addrs_in, dma_addrs_out,
                              SYSC_DMA_BL);
 ACCNAME *acc;
 struct dma_buffer_set dfs[4] = {
@@ -35,7 +35,7 @@ struct dma_buffer_set dfs[4] = {
 };
 int recv_len = (SYSC_DMA_BL / DMA_BC);
 #else
-static struct multi_dma mdma(4, dma_addrs, dma_addrs_in, dma_addrs_out, DMA_BL);
+static struct s_mdma mdma(4, dma_addrs, dma_addrs_in, dma_addrs_out, DMA_BL);
 int *acc;
 struct dma_buffer_set dfs[4] = {
     {DMA_BC, (DMA_BL / DMA_BC), dma_in0},
@@ -49,6 +49,7 @@ int recv_len = (DMA_BL / DMA_BC);
 struct store_params st_params[DMA_BC];
 struct del_params dparams;
 static struct Profile profile;
+struct MultiThreadContext mt_context;
 
 namespace tflite {
 namespace vm_test {
@@ -73,7 +74,7 @@ public:
       acc = &_acc;
       std::cout << "Initialised the SystemC Modules" << std::endl;
 #else
-      dparams.acc = getAccBaseAddress<int>(acc_address, 65536);
+      dparams.acc = getAccBaseAddress<int>(acc_ctrl_address, 65536);
       acc = dparams.acc;
       std::cout << "Initialised the DMA" << std::endl;
 #endif
@@ -507,7 +508,7 @@ public:
       drv.profile = &profile;
       drv.st_params = st_params;
       drv.dfs = dfs;
-      drv.mt_context = &dparams.mt_context;
+      drv.mt_context = &mt_context;
       drv.thread_count = context->recommended_num_threads;
       drv.in_id = 0;
       int *inb_0 = reinterpret_cast<int *>(inb0);

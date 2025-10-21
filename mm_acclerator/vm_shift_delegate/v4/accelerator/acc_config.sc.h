@@ -3,31 +3,81 @@
 #define ACC_CONFIG_H
 
 // Name of the accelerator
-#define ACCNAME VM_SHIFT_INT8_V4_0
+#define ACCNAME VM_SHIFT_MM_V4_0
 
+//==============================================================================
+// Address mapping for the accelerator and DMA
+//==============================================================================
+
+#ifdef KRIA
+// KRIA
 // Pre-Defined Address for Accelerator
-#define acc_address 0x43C00000
+#define acc_ctrl_address 0x00A0000000
+
+#define dma_addr0 0x00A0010000
+#define dma_addr1 0x00A0020000
+#define dma_addr2 0x00A0030000
+#define dma_addr3 0x00A0040000
+
+#define DMA_BL 4194304
+#define DMA_RANGE_START 0x0000000037400000
+#define DMA_RANGE_END 0x00000000773FFFFF
+#define DMA_RANGE_OFFSET 0xC00000         // 1.5MB
+#define DMA_RANGE_SIZE 0x0000000040000000 // 1GB
+#define DMA_IN_BUF_SIZE 0x20000000        // 32MB
+#define DMA_OUT_BUF_SIZE 0x20000000       // 32MB
+
+#define dma_in0 0x38000000
+#define dma_in1 0x3A000000
+#define dma_in2 0x3C000000
+#define dma_in3 0x3E000000
+
+#define dma_out0 0x39000000
+#define dma_out1 0x3B000000
+#define dma_out2 0x3D000000
+#define dma_out3 0x40000000
+
+#else
+
+// Z2
+// Pre-Defined Address for Accelerator
+
+#define acc_ctrl_address 0x43C00000
+
 #define dma_addr0 0x40400000
 #define dma_addr1 0x40410000
 #define dma_addr2 0x40420000
 #define dma_addr3 0x40430000
+
 #define dma_in0 0x16000000
 #define dma_in1 0x18000000
 #define dma_in2 0x1a000000
 #define dma_in3 0x1c000000
+
 #define dma_out0 0x16800000
 #define dma_out1 0x18800000
 #define dma_out2 0x1a800000
 #define dma_out3 0x1c800000
 #define DMA_BL 4194304
+#endif
 
+//==============================================================================
+// Data types
+//==============================================================================
+#define ACC_DTYPE sc_int
+#define ACC_C_DTYPE int
+#define AXI_DWIDTH 32
+#define AXI_TYPE sc_uint
+#define s_mdma multi_dma<AXI_DWIDTH, 0>
+
+//==============================================================================
+// ACC Specific Constants
+//==============================================================================
 // Accelerator Parameters
 // #define VMM_COUNT 1
 // #define VMM_COUNT 2
 // #define VMM_COUNT 3
 #define VMM_COUNT 4
-#define ACC_DTYPE sc_int
-#define ACC_C_DTYPE int
 
 // #define QK_8_4_POT
 #define PROD_DATA_WIDTH_MSQ 12
@@ -36,10 +86,10 @@
 #define PROD_DATA_WIDTH_8x8 16
 #define PROD_DATA_WIDTH_8x4 12
 
-// #define QKERAS
+#define QKERAS
 // #define MSQ
 // #define APOT
-#define MUL88
+// #define MUL88
 
 // Change as needed
 #if defined(QKERAS)
@@ -81,21 +131,26 @@
 
 #include <systemc.h>
 #ifndef __SYNTHESIS__
-#include "tensorflow/lite/delegates/utils/secda_tflite/secda_integrator/sysc_types.h"
-#include "tensorflow/lite/delegates/utils/secda_tflite/secda_profiler/profiler.h"
+#include "secda_tools/axi_support/v5/axi_api_v5.h"
+#include "secda_tools/secda_integrator/sysc_types.h"
+#include "secda_tools/secda_profiler/profiler.h"
 #define DWAIT(x) wait(x)
 // #define ALOG(x) std::cout << x << std::endl
 #define ALOG(x)
 #define acc_dt sc_int<32>
-#else
-typedef struct _DATA {
+
+typedef _BDATA<AXI_DWIDTH, AXI_TYPE> ADATA;
+#else // __SYNTHESIS__
+#include "sysc_types.h"
+
+typedef struct _NDATA {
   sc_uint<32> data;
   bool tlast;
-  void operator=(_DATA _data) {
+  void operator=(_NDATA _data) {
     data = _data.data;
     tlast = _data.tlast;
   }
-  inline friend ostream &operator<<(ostream &os, const _DATA &v) {
+  inline friend ostream &operator<<(ostream &os, const _NDATA &v) {
     cout << "data&colon; " << v.data << " tlast: " << v.tlast;
     return os;
   }
@@ -106,22 +161,8 @@ typedef struct _DATA {
     data.range(23, 16) = a3;
     data.range(31, 24) = a4;
   }
-} DATA;
+} ADATA;
 
-struct sc_out_sig {
-  sc_out<int> oS;
-  sc_signal<int> iS;
-  void write(int x) {
-    oS.write(x);
-    iS.write(x);
-  }
-  int read() { return iS.read(); }
-  void operator=(int x) { write(x); }
-  void bind(sc_signal<int> &sig) { oS.bind(sig); }
-  void operator()(sc_signal<int> &sig) { bind(sig); }
-  void bind(sc_out<int> &sig) { oS.bind(sig); }
-  void operator()(sc_out<int> &sig) { bind(sig); }
-};
 #define DWAIT(x)
 #define ALOG(x)
 #define acc_dt sc_int<32>
@@ -158,7 +199,7 @@ struct inp_packet {
   unsigned int b;
   unsigned int inp_size;
   unsigned int inp_sum_size;
-  inp_packet(sc_fifo_in<DATA> *din) {
+  inp_packet(sc_fifo_in<ADATA> *din) {
     ALOG("INP_PACKET");
     ALOG("Time: " << sc_time_stamp());
     a = din->read().data;
@@ -173,7 +214,7 @@ struct wgt_packet {
   unsigned int b;
   unsigned int wgt_size;
   unsigned int wgt_sum_size;
-  wgt_packet(sc_fifo_in<DATA> *din) {
+  wgt_packet(sc_fifo_in<ADATA> *din) {
     ALOG("WGT_PACKET");
     ALOG("Time: " << sc_time_stamp());
     a = din->read().data;
@@ -189,7 +230,7 @@ struct compute_packet {
   unsigned int c;
   unsigned int inp_block;
   unsigned int wgt_block;
-  compute_packet(sc_fifo_in<DATA> *din) {
+  compute_packet(sc_fifo_in<ADATA> *din) {
     ALOG("COM_PACKET");
     ALOG("Time: " << sc_time_stamp());
     a = din->read().data;
@@ -203,7 +244,7 @@ struct config_packet {
   unsigned int depth;
   unsigned int wgt_rows;
   unsigned int inp_rows;
-  config_packet(sc_fifo_in<DATA> *din) {
+  config_packet(sc_fifo_in<ADATA> *din) {
     ALOG("CON_PACKET");
     ALOG("Time: " << sc_time_stamp());
     depth = din->read().data;
@@ -278,10 +319,10 @@ struct VMM_vars {
   sc_fifo<bUF> wgt_fifo;
   sc_fifo<bUF> inp_fifo;
   sc_fifo<int> post_fifo;
-  sc_fifo<DATA> dout1;
-  sc_fifo<DATA> dout2;
-  sc_fifo<DATA> dout3;
-  sc_fifo<DATA> dout4;
+  sc_fifo<ADATA> dout1;
+  sc_fifo<ADATA> dout2;
+  sc_fifo<ADATA> dout3;
+  sc_fifo<ADATA> dout4;
   sc_out<int> computeS;
   sc_out<int> postS;
 

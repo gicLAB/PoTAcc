@@ -42,7 +42,7 @@ void ACCNAME::out_dbg(bool block_done, bool vmm_done, bool post_done,
 void ACCNAME::Output_Handler() {
   bool ready = false;
   bool resetted = true;
-  DATA last = {5000, 1};
+  ADATA last = {5000, 1};
 
   outS.write(0);
   wait();

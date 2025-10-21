@@ -1,7 +1,9 @@
 #ifndef SYSTEMC_BINDING
 #define SYSTEMC_BINDING
 
-#include "tensorflow/lite/delegates/utils/secda_tflite/axi_support/axi_api_v2.h"
+#include "secda_tools/axi_support/v5/axi_api_v5.h"
+#include "secda_tools/secda_integrator/sysc_types.h"
+#include "secda_tools/secda_integrator/systemc_integrate.h"
 
 // This file is specfic to VM SystemC definition
 // This contains all the correct port/signal bindings to instantiate the VM
@@ -50,15 +52,15 @@ struct sysC_sigs {
   sc_signal<int> sig_postS2;
   sc_signal<int> sig_postS3;
 
-  sc_fifo<DATA> dout1;
-  sc_fifo<DATA> dout2;
-  sc_fifo<DATA> dout3;
-  sc_fifo<DATA> dout4;
+  sc_fifo<ADATA> dout1;
+  sc_fifo<ADATA> dout2;
+  sc_fifo<ADATA> dout3;
+  sc_fifo<ADATA> dout4;
 
-  sc_fifo<DATA> din1;
-  sc_fifo<DATA> din2;
-  sc_fifo<DATA> din3;
-  sc_fifo<DATA> din4;
+  sc_fifo<ADATA> din1;
+  sc_fifo<ADATA> din2;
+  sc_fifo<ADATA> din3;
+  sc_fifo<ADATA> din4;
 
   sysC_sigs(int id_)
       : dout1("dout1_fifo", 563840), dout2("dout2_fifo", 563840),
@@ -72,7 +74,7 @@ struct sysC_sigs {
   }
 };
 
-void sysC_binder(ACCNAME *acc, multi_dma *mdma, sysC_sigs *scs) {
+void sysC_binder(ACCNAME *acc, s_mdma *mdma, sysC_sigs *scs) {
   acc->clock(scs->clk_fast);
   acc->reset(scs->sig_reset);
   acc->inS(scs->sig_inS);
@@ -123,18 +125,6 @@ void sysC_binder(ACCNAME *acc, multi_dma *mdma, sysC_sigs *scs) {
   acc->din2(scs->din2);
   acc->din3(scs->din3);
   acc->din4(scs->din4);
-
-  acc->vars.vars_0.computeS(scs->sig_computeS0);
-  acc->vars.vars_0.postS(scs->sig_postS0);
-
-  acc->vars.vars_1.computeS(scs->sig_computeS1);
-  acc->vars.vars_1.postS(scs->sig_postS1);
-
-  acc->vars.vars_2.computeS(scs->sig_computeS2);
-  acc->vars.vars_2.postS(scs->sig_postS2);
-
-  acc->vars.vars_3.computeS(scs->sig_computeS3);
-  acc->vars.vars_3.postS(scs->sig_postS3);
 }
 
 #endif // SYSTEMC_BINDING

@@ -8,10 +8,13 @@
 #endif
 
 #include "../acc_config.sc.h"
-#include "tensorflow/lite/delegates/utils/secda_tflite/axi_support/axi_api_v2.h"
-#include "tensorflow/lite/delegates/utils/secda_tflite/secda_profiler/profiler.h"
-#include "tensorflow/lite/delegates/utils/secda_tflite/threading_utils/acc_helpers.h"
-#include "tensorflow/lite/delegates/utils/secda_tflite/threading_utils/multi_threading.h"
+#include "secda_tools/axi_support/v5/axi_api_v5.h"
+#include "secda_tools/secda_profiler/profiler.h"
+#include "secda_tools/secda_utils/acc_helpers.h"
+#include "secda_tools/secda_utils/multi_threading.h"
+#include "secda_tools/secda_utils/utils.h"
+
+
 #include <chrono>
 #include <fcntl.h>
 #include <fstream>
@@ -108,7 +111,7 @@ struct acc_container {
 
   Profile *profile;
   // DMAs Pointer
-  struct multi_dma *mdma;
+  struct s_mdma *mdma;
 
   // Temporary Weight non-MMapped Padded Buffers
   int *wb_0;

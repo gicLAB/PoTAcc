@@ -1,0 +1,16 @@
+{
+  "acc_name": "VMSHQK_Z2",
+  "acc_version": 2,
+  "acc_sub_version": 0,
+  "acc_src": "vm_shift_delegate/v2/accelerator",
+  "acc_link_folder": "vm_sh_src_v2",
+  "hlx_tcl_script": "mdma_axilite_hlx_reconfig_4_xfull.tcl",
+  "top": "VM_SHIFT_V2_0",
+  "del": "vm_shift_delegate",
+  "del_version": "2",
+  "hls_clock": "5",
+  "hlx_Mhz": "200",
+  "axi_bitW": "32",
+  "axi_burstS": "32",
+  "board": "Z2"
+}

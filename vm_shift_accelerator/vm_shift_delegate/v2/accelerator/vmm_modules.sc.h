@@ -197,7 +197,7 @@ void VMM_UNIT::Post() {
   int x[4];
   int pcrf[4];
   ACC_DTYPE<8> pex[4];
-  DATA last = {5000, 1};
+  ADATA last = {5000, 1};
 
 #pragma HLS array_partition variable = y complete dim = 0
 #pragma HLS array_partition variable = x complete dim = 0
@@ -236,10 +236,10 @@ void VMM_UNIT::Post() {
       PPU(x, y, pcrf, pex, g, r);
       postS.write(4);
 
-      DATA data1;
-      DATA data2;
-      DATA data3;
-      DATA data4;
+      ADATA data1;
+      ADATA data2;
+      ADATA data3;
+      ADATA data4;
       data1.pack(r[0], r[4], r[8], r[12]);
       data2.pack(r[1], r[5], r[9], r[13]);
       data3.pack(r[2], r[6], r[10], r[14]);

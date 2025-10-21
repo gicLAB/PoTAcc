@@ -236,7 +236,7 @@ void ACCNAME::Input_Handler() {
 #pragma HLS resource core=AXI4LiteS metadata="-bus_bundle slv0" variable=w3SS
 #pragma HLS resource core=AXI4LiteS metadata="-bus_bundle slv0" variable=w4SS
 
-  DATA last = {5000, 1};
+  ADATA last = {5000, 1};
 
   inS.write(0);
   wait();

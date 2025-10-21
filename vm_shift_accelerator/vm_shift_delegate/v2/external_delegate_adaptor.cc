@@ -2,9 +2,9 @@
 #include <vector>
 
 #include "tensorflow/lite/c/common.h"
+#include "vm_shift_delegate.h"
 #include "tensorflow/lite/tools/command_line_flags.h"
 #include "tensorflow/lite/tools/logging.h"
-#include "vm_shift_delegate.h"
 
 namespace tflite {
 namespace tools {

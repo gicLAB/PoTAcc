@@ -1,6 +1,6 @@
 
 void ACCNAME::Arranger() {
-  DATA d1, d2, d3, d4;
+  ADATA d1, d2, d3, d4;
   wait();
   while (true) {
     for (int i = 0; i < VMM_COUNT; i++) {

@@ -2,7 +2,7 @@
 #define GEMM_DRIVER
 
 #include "acc_container.h"
-#include "tensorflow/lite/delegates/utils/secda_tflite/threading_utils/utils.h"
+#include "secda_tools/secda_utils/utils.h"
 #include <chrono>
 #include <cmath>
 #include <cstring>
@@ -81,14 +81,14 @@ void Entry(acc_container &drv, int8_t *dst) {
   int output_stride = drv.cols;
 
 #if defined(SYSC) || defined(DELEGATE_VERBOSE)
-  // cerr << "VM" << endl;
-  // cerr << "===========================" << endl;
-  // cerr << "Pre-ACC Info: " << drv.t.layer << endl;
-  // cerr << "rdepth: " << rdepth << " depth: " << depth << endl;
-  // cerr << "rcols: " << rcols << " cols: " << cols << endl;
-  // cerr << "rrows: " << rrows << " rows: " << rows << endl;
-  // cerr << "output_stride: " << output_stride << endl;
-  // cerr << "===========================" << endl;
+  cerr << "VM" << endl;
+  cerr << "===========================" << endl;
+  cerr << "Pre-ACC Info: " << drv.t.layer << endl;
+  cerr << "rdepth: " << rdepth << " depth: " << depth << endl;
+  cerr << "rcols: " << rcols << " cols: " << cols << endl;
+  cerr << "rrows: " << rrows << " rows: " << rows << endl;
+  cerr << "output_stride: " << output_stride << endl;
+  cerr << "===========================" << endl;
 #endif
 
   TileGEMM(drv, output_stride, depth, rdepth, rows, rrows, cols, rcols, dst);
