@@ -1,0 +1,27 @@
+        // // =========================================
+        // // Others
+        // // =========================================        
+        {
+            "preLaunchTask": "inference_diff_plus_vm_shift_delegate_v12",
+            "name": "Inference Diff | VMSHv12",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/tensorflow/lite/delegates/utils/secda_delegates/vm_shift_delegate/v12/inference_diff_plus_vm_shift_delegate",
+            "args": [
+                "--model_file=${workspaceFolder}/../data/models/mobilenetv2_QKERAS.tflite",
+                "--num_runs=1",
+                "--use_vm_shift_delegate=true",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
