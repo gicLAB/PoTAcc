@@ -1,0 +1,99 @@
+    {
+        "label": "benchmark_model_plus_vm_opt_delegate_v12",
+        "type": "shell",
+        "command": "bazel6 build tensorflow/lite/delegates/utils/secda_delegates/vm_opt_delegate/v12:benchmark_model_plus_vm_opt_delegate -c dbg --cxxopt='-DSYSC' --cxxopt='-DTF_LITE_DISABLE_X86_NEON' --cxxopt='-DACC_PROFILE' --define tflite_with_xnnpack=false --cxxopt='-DRUY_OPT_SET=0' --@secda_tools//:config=sysc ",
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    },
+    {
+        "label": "benchmark_model_plus_vm_shift_delegate_v12_QK",
+        "type": "shell",
+        "command": "bazel6 build tensorflow/lite/delegates/utils/secda_delegates/vm_shift_delegate/v12:benchmark_model_plus_vm_shift_delegate -c dbg --cxxopt='-DSYSC' --cxxopt='-DTF_LITE_DISABLE_X86_NEON' --cxxopt='-DACC_PROFILE' --define tflite_with_xnnpack=false --cxxopt='-DRUY_OPT_SET=0' --@secda_tools//:config=sysc --cxxopt='-DQKERAS'",
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    },
+    {
+        "label": "benchmark_model_plus_vm_shift_delegate_v12_APOT",
+        "type": "shell",
+        "command": "bazel6 build tensorflow/lite/delegates/utils/secda_delegates/vm_shift_delegate/v12:benchmark_model_plus_vm_shift_delegate -c dbg --cxxopt='-DSYSC' --cxxopt='-DTF_LITE_DISABLE_X86_NEON' --cxxopt='-DACC_PROFILE' --define tflite_with_xnnpack=false --cxxopt='-DRUY_OPT_SET=0' --@secda_tools//:config=sysc --cxxopt='-DAPOT'",
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    },
+    {
+        "label": "benchmark_model_plus_vm_shift_delegate_v12_MSQ",
+        "type": "shell",
+        "command": "bazel6 build tensorflow/lite/delegates/utils/secda_delegates/vm_shift_delegate/v12:benchmark_model_plus_vm_shift_delegate -c dbg --cxxopt='-DSYSC' --cxxopt='-DTF_LITE_DISABLE_X86_NEON' --cxxopt='-DACC_PROFILE' --define tflite_with_xnnpack=false --cxxopt='-DRUY_OPT_SET=0' --@secda_tools//:config=sysc --cxxopt='-DMSQ'",
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    },
+    {
+        "label": "inference_diff_plus_vm_opt_delegate_v12",
+        "type": "shell",
+        "command": "bazel6 build tensorflow/lite/delegates/utils/secda_delegates/vm_opt_delegate/v12:inference_diff_plus_vm_opt_delegate -c dbg --cxxopt='-DSYSC' --cxxopt='-DTF_LITE_DISABLE_X86_NEON' --cxxopt='-DACC_PROFILE' --define tflite_with_xnnpack=false --cxxopt='-DRUY_OPT_SET=0' --@secda_tools//:config=sysc ",
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    },
+    {
+        "label": "inference_diff_plus_vm_shift_delegate_v12_QK",
+        "type": "shell",
+        "command": "bazel6 build tensorflow/lite/delegates/utils/secda_delegates/vm_shift_delegate/v12:inference_diff_plus_vm_shift_delegate -c dbg --cxxopt='-DSYSC' --cxxopt='-DTF_LITE_DISABLE_X86_NEON' --cxxopt='-DACC_PROFILE' --define tflite_with_xnnpack=false --cxxopt='-DRUY_OPT_SET=0' --@secda_tools//:config=sysc --cxxopt='-DQKERAS'",
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    },
+    {
+        "label": "inference_diff_plus_vm_shift_delegate_v12_APOT",
+        "type": "shell",
+        "command": "bazel6 build tensorflow/lite/delegates/utils/secda_delegates/vm_shift_delegate/v12:inference_diff_plus_vm_shift_delegate -c dbg --cxxopt='-DSYSC' --cxxopt='-DTF_LITE_DISABLE_X86_NEON' --cxxopt='-DACC_PROFILE' --define tflite_with_xnnpack=false --cxxopt='-DRUY_OPT_SET=0' --@secda_tools//:config=sysc --cxxopt='-DAPOT'",
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    },
+    {
+        "label": "eval_model_accuracy_plus_vm_opt_delegate_v12",
+        "type": "shell",
+        "command": "bazel6 build tensorflow/lite/delegates/utils/secda_delegates/vm_opt_delegate/v12:eval_model_accuracy_plus_vm_opt_delegate -c dbg --cxxopt='-DSYSC' --cxxopt='-DTF_LITE_DISABLE_X86_NEON' --cxxopt='-DACC_PROFILE' --define tflite_with_xnnpack=false --cxxopt='-DRUY_OPT_SET=0' --@secda_tools//:config=sysc ",
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    },
+    {
+        "label": "eval_model_accuracy_plus_vm_shift_delegate_v12_QK",
+        "type": "shell",
+        "command": "bazel6 build tensorflow/lite/delegates/utils/secda_delegates/vm_shift_delegate/v12:eval_model_accuracy_plus_vm_shift_delegate -c dbg --cxxopt='-DSYSC' --cxxopt='-DTF_LITE_DISABLE_X86_NEON' --cxxopt='-DACC_PROFILE' --define tflite_with_xnnpack=false --cxxopt='-DRUY_OPT_SET=0' --@secda_tools//:config=sysc --cxxopt='-DQKERAS'",
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    },
+    {
+        "label": "imagenet_image_classification_plus_vm_opt_delegate_v12",
+        "type": "shell",
+        "command": "bazel6 build tensorflow/lite/delegates/utils/secda_delegates/vm_opt_delegate/v12:imagenet_image_classification_plus_vm_opt_delegate -c dbg --cxxopt='-DSYSC' --cxxopt='-DTF_LITE_DISABLE_X86_NEON' --cxxopt='-DACC_PROFILE' --define tflite_with_xnnpack=false --cxxopt='-DRUY_OPT_SET=0' --@secda_tools//:config=sysc ",
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    },
+    {
+        "label": "imagenet_image_classification_plus_vm_shift_delegate_v12_APOT",
+        "type": "shell",
+        "command": "bazel6 build tensorflow/lite/delegates/utils/secda_delegates/vm_shift_delegate/v12:imagenet_image_classification_plus_vm_shift_delegate -c dbg --cxxopt='-DSYSC' --cxxopt='-DTF_LITE_DISABLE_X86_NEON' --cxxopt='-DACC_PROFILE' --define tflite_with_xnnpack=false --cxxopt='-DRUY_OPT_SET=0' --@secda_tools//:config=sysc --cxxopt='-DAPOT'",
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    },

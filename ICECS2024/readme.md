@@ -164,11 +164,11 @@ to-end PoT acceleration pipeline (PoTAcc) for edge devices.
 Using PoTAcc, we evaluate the accelerator performance across
 three well-known DNN models.
 
-```
-@inproceedings{SAHA2024ICECS,
-      title={{Accelerating PoT Quantization on Edge Devices}}, 
-      author={Rappy Saha and Jude Haris and José Cano},
-      booktitle = {2024 31st IEEE International Conference on Electronics, Circuits and Systems (ICECS)},
-      year={2024}
+```text
+@article{saha2024accelerating,
+  author  = {Rappy Saha and Jude Haris and José Cano},
+  title   = {{Accelerating {PoT} Quantization on Edge Devices}},
+  journal = {arXiv preprint arXiv:2409.20403},
+  year    = {2024}
 }
 ```

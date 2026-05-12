@@ -1,0 +1,16 @@
+{
+  "acc_name": "VMOPT_KRIA_250M",
+  "acc_version": 12,
+  "acc_sub_version": 4,
+  "acc_src": "vm_opt_delegate/v12/accelerator",
+  "acc_link_folder": "vm_opt_src_v12",
+  "hlx_tcl_script": "mdma_axilite_hlx_reconfig_4_kria.tcl",
+  "top": "VM_OPT_INT8_V12_4",
+  "del": "vm_opt_delegate",
+  "del_version": "12",
+  "hls_clock": "4",
+  "hlx_Mhz": "250",
+  "axi_bitW": "32",
+  "axi_burstS": "32",
+  "board": "KRIA"
+}

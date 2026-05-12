@@ -1,0 +1,17 @@
+{
+  "acc_name": "VMSHQKERAS_Z2_200M",
+  "acc_version": 12,
+  "acc_sub_version": 4,
+  "acc_src": "vm_shift_delegate/v12/accelerator",
+  "acc_link_folder": "vm_shift_src_v12",
+  "hlx_tcl_script": "mdma_axilite_hlx_reconfig_4_xfull.tcl",
+  "top": "VM_SHIFT_V12_4",
+  "del": "vm_shift_delegate",
+  "del_version": "12",
+  "hls_clock": "5",
+  "hlx_Mhz": "200",
+  "axi_bitW": "32",
+  "axi_burstS": "32",
+  "board": "Z2",
+  "potq": "QKERAS"
+}

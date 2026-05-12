@@ -1,0 +1,311 @@
+        {
+            "preLaunchTask": "benchmark_model_plus_vm_opt_delegate_v12",
+            "name": "Benchmark Model | VMOPTv12",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/tensorflow/lite/delegates/utils/secda_delegates/vm_opt_delegate/v12/benchmark_model_plus_vm_opt_delegate",
+            "args": [
+                "--use_gpu=false",
+                "--num_threads=1",
+                "--enable_op_profiling=true",
+                "--graph=${workspaceFolder}/../data/models/mobilenetv2.tflite",
+                "--num_runs=1",
+                "--warmup_runs=0",
+                "--warmup_min_secs=0",
+                "--use_vm_opt_delegate=true",
+                "--print_postinvoke_state=true"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "preLaunchTask": "benchmark_model_plus_vm_shift_delegate_v12_QK",
+            "name": "Benchmark Model | VMSHQKv12",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/tensorflow/lite/delegates/utils/secda_delegates/vm_shift_delegate/v12/benchmark_model_plus_vm_shift_delegate",
+            "args": [
+                "--graph=${workspaceFolder}/../data/models/mobilenetv2_QKERAS.tflite",
+                "--num_runs=1",
+                "--warmup_runs=0",
+                "--warmup_min_secs=0",
+                "--use_vm_shift_delegate=true",
+                "--print_postinvoke_state=true",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "preLaunchTask": "benchmark_model_plus_vm_shift_delegate_v12_APOT",
+            "name": "Benchmark Model | VMSHAPOTv12",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/tensorflow/lite/delegates/utils/secda_delegates/vm_shift_delegate/v12/benchmark_model_plus_vm_shift_delegate",
+            "args": [
+                "--graph=${workspaceFolder}/../data/imagenet/models/potaccAPoTmobilenet_v2_4bit.tflite",
+                "--num_runs=1",
+                "--warmup_runs=0",
+                "--warmup_min_secs=0",
+                "--use_vm_shift_delegate=true",
+                "--print_postinvoke_state=true",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "preLaunchTask": "benchmark_model_plus_vm_shift_delegate_v12_MSQ",
+            "name": "Benchmark Model | VMSHMSQv12",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/tensorflow/lite/delegates/utils/secda_delegates/vm_shift_delegate/v12/benchmark_model_plus_vm_shift_delegate",
+            "args": [
+                "--graph=${workspaceFolder}/../data/models/mobilenetv2.tflite",
+                "--num_runs=1",
+                "--warmup_runs=0",
+                "--warmup_min_secs=0",
+                "--use_vm_shift_delegate=true",
+                "--print_postinvoke_state=true",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "preLaunchTask": "inference_diff_plus_vm_opt_delegate_v12",
+            "name": "Inference Diff | VMOPTv12",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/tensorflow/lite/delegates/utils/secda_delegates/vm_opt_delegate/v12/inference_diff_plus_vm_opt_delegate",
+            "args": [
+                "--model_file=${workspaceFolder}/../data/imagenet/models/mobilenetv2.tflite",
+                "--num_runs=1",
+                "--use_vm_opt_delegate=true",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "preLaunchTask": "inference_diff_plus_vm_shift_delegate_v12_QK",
+            "name": "Inference Diff | VMSHQKv12",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/tensorflow/lite/delegates/utils/secda_delegates/vm_shift_delegate/v12/inference_diff_plus_vm_shift_delegate",
+            "args": [
+                "--model_file=${workspaceFolder}/../data/cifar10/models/potaccQK_mbv2_4bit.tflite",
+                "--num_runs=1",
+                "--use_vm_shift_delegate=true",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "preLaunchTask": "inference_diff_plus_vm_shift_delegate_v12_APOT",
+            "name": "Inference Diff | VMSHAPOTv12",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/tensorflow/lite/delegates/utils/secda_delegates/vm_shift_delegate/v12/inference_diff_plus_vm_shift_delegate",
+            "args": [
+                "--model_file=${workspaceFolder}/../data/imagenet/models/potaccAPoTmobilenet_v2_4bit.tflite",
+                "--num_runs=1",
+                "--use_vm_shift_delegate=true",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "preLaunchTask": "eval_model_accuracy_plus_vm_opt_delegate_v12",
+            "name": "Eval Model Accuracy | VMOPTv12",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/tensorflow/lite/delegates/utils/secda_delegates/vm_opt_delegate/v12/eval_model_accuracy_plus_vm_opt_delegate",
+            "args": [
+                //MNIST//
+                // "-m${workspaceFolder}/../data/mnist/models/customCNN_fpTrained_ptqint8_mnist_100.tflite",
+                // "-l${workspaceFolder}/../data/mnist/labels/model_output_labels_10.txt",
+                // "-i${workspaceFolder}/../data/mnist/testData/testX_000010.bmp",
+                // "-d${workspaceFolder}/../data/mnist/testData",
+                // "-h${workspaceFolder}/../data/mnist/labels/groundTruth_testData_labels.txt",
+                // "-o${env:SECDA_TFLITE_PATH}/src/secda_apps/eval_model_accuracy/output/mnist_outputTest.txt",
+                //CIFAR10//
+                "-m${workspaceFolder}/../data/cifar10/models/potacc_mbv2_pretrained_32bit.tflite",
+                "-l${workspaceFolder}/../data/cifar10/labels/model_output_labels_10.txt",
+                "-i${workspaceFolder}/../data/cifar10/testData/testX_000010.bmp",
+                "-d${workspaceFolder}/../data/cifar10/testData",
+                "-h${workspaceFolder}/../data/cifar10/labels/groundTruth_testData_labels.txt",
+                "-o${env:SECDA_TFLITE_PATH}/src/secda_apps/eval_model_accuracy/output/cifar10_outputTest.txt",
+                "-u10",
+                "-t1",
+                "--use_vm_opt_delegate=true",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "preLaunchTask": "eval_model_accuracy_plus_vm_shift_delegate_v12_QK",
+            "name": "Eval Model Accuracy | VMSHQKv12",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/tensorflow/lite/delegates/utils/secda_delegates/vm_shift_delegate/v12/eval_model_accuracy_plus_vm_shift_delegate",
+            "args": [
+                "-m${workspaceFolder}/../data/cifar10/models/potaccQK_mbv2_4bit.tflite",
+                "-l${workspaceFolder}/../data/cifar10/labels/model_output_labels_10.txt",
+                "-i${workspaceFolder}/../data/cifar10/testData/testX_000010.bmp",
+                "-d${workspaceFolder}/../data/cifar10/testData",
+                "-h${workspaceFolder}/../data/cifar10/labels/groundTruth_testData_labels.txt",
+                "-o${env:SECDA_TFLITE_PATH}/src/secda_apps/eval_model_accuracy/output/cifar10_outputTest.txt",
+                "-u10",
+                "-t1",
+                "--use_vm_shift_delegate=true",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "preLaunchTask": "imagenet_image_classification_plus_vm_opt_delegate_v12",
+            "name": "Imagenet Image Classification | VMOPTv12",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/tensorflow/lite/delegates/utils/secda_delegates/vm_opt_delegate/v12/imagenet_image_classification_plus_vm_opt_delegate",
+            "args": [
+                "--model_file=${workspaceFolder}/../data/imagenet/models/mobilenetv2_quant_int8_1000.tflite",
+                "--ground_truth_images_path=${workspaceFolder}/../data/imagenet/testData",
+                "--ground_truth_labels=${workspaceFolder}/../data/imagenet/labels/groundTruth_testData_labels.txt",
+                "--model_output_labels=${workspaceFolder}/../data/imagenet/labels/model_output_labels_1000.txt",
+                "--output_file_path=${workspaceFolder}/src/secda_apps/imagenet_image_classification/output/imagenet_outputTest.txt",
+                "--num_images=5",
+                "--num_interpreter_threads=8",
+                "--SkipEvaluation=0",
+                "--use_vm_opt_delegate=true",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "preLaunchTask": "imagenet_image_classification_plus_vm_shift_delegate_v12_APOT",
+            "name": "Imagenet Image Classification | VMSHAPOTv12",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/tensorflow/lite/delegates/utils/secda_delegates/vm_shift_delegate/v12/imagenet_image_classification_plus_vm_shift_delegate",
+            "args": [
+                "--model_file=${workspaceFolder}/../data/imagenet/models/potaccAPoTmobilenet_v2_4bit.tflite",
+                "--ground_truth_images_path=${workspaceFolder}/../data/imagenet/testData",
+                "--ground_truth_labels=${workspaceFolder}/../data/imagenet/labels/groundTruth_testData_labels.txt",
+                "--model_output_labels=${workspaceFolder}/../data/imagenet/labels/model_output_labels_1000.txt",
+                "--output_file_path=${workspaceFolder}/src/secda_apps/imagenet_image_classification/output/imagenet_outputTest.txt",
+                "--num_images=5",
+                "--num_interpreter_threads=2",
+                "--SkipEvaluation=0",
+                "--use_vm_shift_delegate=true",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
