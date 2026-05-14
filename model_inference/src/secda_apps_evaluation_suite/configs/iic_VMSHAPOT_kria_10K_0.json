@@ -1,0 +1,21 @@
+{
+    "hardware": [
+        "VMSHAPOTv12_4_KRIA_250M"
+    ],
+    "apps": {
+        "imagenet_image_classification": {
+            "model_file": [
+                "$(d)/imagenet/models/potaccAPoTmobilenet_v2_4bit"
+            ],
+            "num_interpreter_threads": [
+                "4"
+            ],
+            "ground_truth_images_path": "$(d)/imagenet/testData_10k_0",
+            "ground_truth_labels": "$(d)/imagenet/labels/groundTruth_testData_labels_10k_0.txt",
+            "model_output_labels": "$(d)/imagenet/labels/model_output_labels_1000.txt",
+            "output_file_path": "",
+            "num_images": "1",
+            "SkipEvaluation": "0"
+        }
+    }
+}

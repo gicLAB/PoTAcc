@@ -1,0 +1,21 @@
+{
+    "hardware": [
+        "VMOPTv12_4_KRIA_250M"
+    ],
+    "apps": {
+        "eval_model_accuracy": {
+            "tflite_model": [
+                "$(d)/cifar10/models/potaccQK_mbv2_4bit"
+            ],
+            "threads": [
+                "4"
+            ],
+            "labels": "$(d)/cifar10/labels/model_output_labels_10.txt",
+            "image": "$(d)/cifar10/testData/testX_000010.bmp",
+            "test_dataset_location": "$(d)/cifar10/testData/",
+            "ground_truth_labels_file_name": "$(d)/cifar10/labels/groundTruth_testData_labels.txt",
+            "output_file_name": "",
+            "no_of_images": "10000"
+        }
+    }
+}

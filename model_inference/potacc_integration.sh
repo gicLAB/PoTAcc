@@ -77,25 +77,47 @@ else
     echo "WARNING: HW configs and Generated files not found at $SRC; skipping copy."
 fi
 
-# Step 4: Copy secda_delegates from PoTAcc into SECDA-TFLite src/secda_delegates
+# Step 4: Copy secda_delegates and secda_apps_evaluation_suite from PoTAcc into SECDA-TFLite src/
 echo ""
-echo "[4/6] Copying secda_delegates from PoTAcc into SECDA-TFLite..."
+echo "[4/6] Copying secda_delegates and secda_apps_evaluation_suite from PoTAcc into SECDA-TFLite..."
+
+copy_src_dir() {
+    local src_dir="$1"
+    local dst_dir="$2"
+    local label="$3"
+
+    if [[ -d "$src_dir" ]]; then
+        echo "  Source: $src_dir"
+        echo "  Destination: $dst_dir"
+        mkdir -p "$dst_dir"
+        # Copy contents and overwrite existing files
+        cp -a "$src_dir"/. "$dst_dir"/
+        if [ $? -ne 0 ]; then
+            echo "ERROR: Failed to copy $label to $dst_dir"
+            exit 1
+        fi
+        echo "✓ $label copied and existing files overwritten."
+    else
+        echo "WARNING: $label not found at $src_dir; skipping copy."
+    fi
+}
+
 SRC_DELEGATES="$SCRIPT_DIR/src/secda_delegates"
 DST_DELEGATES="$SECDA_ROOT/src/secda_delegates"
+copy_src_dir "$SRC_DELEGATES" "$DST_DELEGATES" "secda_delegates"
 
-if [[ -d "$SRC_DELEGATES" ]]; then
-    echo "  Source: $SRC_DELEGATES"
-    echo "  Destination: $DST_DELEGATES"
-    mkdir -p "$DST_DELEGATES"
-    # Copy contents and overwrite existing files
-    cp -a "$SRC_DELEGATES"/. "$DST_DELEGATES"/
+SRC_APPS_EVAL="$SCRIPT_DIR/src/secda_apps_evaluation_suite"
+DST_APPS_EVAL="$SECDA_ROOT/src/secda_apps_evaluation_suite"
+copy_src_dir "$SRC_APPS_EVAL" "$DST_APPS_EVAL" "secda_apps_evaluation_suite"
+
+if [[ -d "$DST_APPS_EVAL" ]]; then
+    # Ensure copied shell scripts are executable.
+    find "$DST_APPS_EVAL" -type f -name "*.sh" -exec chmod +x {} +
     if [ $? -ne 0 ]; then
-        echo "ERROR: Failed to copy secda_delegates to $DST_DELEGATES"
+        echo "ERROR: Failed to set executable permissions on .sh files in $DST_APPS_EVAL"
         exit 1
     fi
-    echo "✓ secda_delegates copied and existing files overwritten."
-else
-    echo "WARNING: secda_delegates not found at $SRC_DELEGATES; skipping copy."
+    echo "✓ Executable permissions updated for .sh files in secda_apps_evaluation_suite."
 fi
 
 # Step 5: Copy data folders from PoTAcc into SECDA-TFLite/data
@@ -125,10 +147,19 @@ fi
 
 # Step 6: Merge vscode `launch.json` and `tasks.json` from PoTAcc into tensorflow/.vscode
 echo ""
-echo "[6/6] Merging VSCode launch/tasks from PoTAcc into tensorflow/.vscode..."
+echo "[6/7] Merging VSCode launch/tasks from PoTAcc into tensorflow/.vscode..."
 bash "$SCRIPT_DIR/patch_launch.sh"
 if [ $? -ne 0 ]; then
     echo "ERROR: Failed to merge VSCode launch/tasks"
+    exit 1
+fi
+
+# Step 7: Apply Image-Classification / Preprocessing patches
+echo ""
+echo "[7/7] Applying Image-Classification and Preprocessing C++ patches..."
+bash "$SCRIPT_DIR/tensorflow/patch_iic.sh"
+if [ $? -ne 0 ]; then
+    echo "ERROR: Failed to apply IIC patches"
     exit 1
 fi
 
