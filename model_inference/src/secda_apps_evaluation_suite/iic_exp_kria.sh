@@ -113,6 +113,6 @@ sleep "$RESTART_WAIT_TIME"
 check_ssh_connectivity
 
 log_msg ""
-# log_cmd "./secda_apps_evaluation_suite.sh -j configs/iic_VMSHAPOT_kria_10K_0.json -n iic_VMSHAPOT_kria_10K_0 -b -c"
-# ./secda_apps_evaluation_suite.sh -j configs/iic_VMSHAPOT_kria_10K_0.json -n iic_VMSHAPOT_kria_10K_0 -b -c | tee -a "$LOG_FILE"
+log_cmd "./secda_apps_evaluation_suite.sh -j configs/iic_VMSHAPOT_kria_10K_0.json -n iic_VMSHAPOT_kria_10K_0 -b -c"
+./secda_apps_evaluation_suite.sh -j configs/iic_VMSHAPOT_kria_10K_0.json -n iic_VMSHAPOT_kria_10K_0 -b -c | tee -a "$LOG_FILE"
 log_msg "✓ Completed iic_VMSHAPOT_kria_10K_0 evaluation"

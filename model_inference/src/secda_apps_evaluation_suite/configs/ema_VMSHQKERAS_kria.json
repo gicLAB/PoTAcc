@@ -15,7 +15,7 @@
             "test_dataset_location": "$(d)/cifar10/testData/",
             "ground_truth_labels_file_name": "$(d)/cifar10/labels/groundTruth_testData_labels.txt",
             "output_file_name": "",
-            "no_of_images": "10000"
+            "no_of_images": "10"
         }
     }
 }

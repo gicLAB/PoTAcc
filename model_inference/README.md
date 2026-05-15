@@ -66,6 +66,34 @@ cd ../..
 
 - Use 'secda_apps_evaluation_suite' in SECDA-TFLite.
 
+```bash
+cd src/secda_apps_evaluation_suite
+```
+
+- initialize the board
+```bash
+./secda_apps_evaluation_suite.sh -b -i
+```
+
+- For Testing ImageNet-based model accuracy.
+
+```bash
+./iic_exp_kria.sh
+```
+
+- For Testing CIFAR10-based model accuracy.
+
+```bash
+./ema_exp_kria.sh
+```
+
+- for benchmark. To enable power collection use (-p) flag in src/secda_apps_evaluation_suite/configs/bm_*.json files
+
+```bash
+./bm_exp_kria.sh
+```
+
+
 ---
 
 ## PoTAcc Folder structure:
