@@ -1,7 +1,7 @@
 # PoTAcc: A Pipeline for End-to-End Acceleration of Power-of-Two Quantized DNNs
 
 This repository will contain the code for the PoTAcc pipeline.
-![PoTAcc figure](../figures/potacc.svg)
+![PoTAcc figure](./figures/potacc.svg)
 
 ## Steps:
 ### 1. Download SECDA-TFLite v2.
@@ -51,7 +51,7 @@ cd ../..
 - Within the VSCODE 'run and debug (Ctrl+Shift+D)', one should see launch tasks at the end like following figure.
 
 <div align="center">
-  <img src="../figures/runNdebug.svg" alt="run and debug" width="300" />
+  <img src="./figures/runNdebug.svg" alt="run and debug" width="300" />
 </div>
 
 - Four Tasks/Application
