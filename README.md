@@ -136,7 +136,7 @@ cd src/secda_apps_evaluation_suite
 ---
 ## Cite:
 
-### Journal:
+### Journal (IEEE TCASAI):
 
 ```text
 @article{SAHA2026TCASAI,
@@ -148,7 +148,7 @@ cd src/secda_apps_evaluation_suite
 }
 ```
 
-### Conference:
+### Conference (IEEE ICECS):
 
 ```text
 @article{saha2024accelerating,
